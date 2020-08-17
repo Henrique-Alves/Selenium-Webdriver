@@ -1,0 +1,24 @@
+package projetoteste;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TesteAlert {
+	
+	@Test
+	public void DeveInteragirComAlertSimples() {
+		WebDriver driver10 = new ChromeDriver();
+		//driver10.manage().window().setSize(new Dimension(1024, 768));
+		driver10.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		
+		driver10.findElement(By.id("alert"));
+		Alert alert = driver10.switchTo().alert();
+		Assert.assertEquals("Alert Simples", alert.getText());
+		driver10.findElement(By.id("elementosForm:nome")).sendKeys(alert.getText());
+	}
+
+}

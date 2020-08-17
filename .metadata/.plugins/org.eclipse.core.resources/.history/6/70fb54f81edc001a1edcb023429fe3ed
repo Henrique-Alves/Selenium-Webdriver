@@ -1,0 +1,17 @@
+package projetoteste;
+
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TestDesafioRegraDeNegocios {
+	//esse é do professor;
+	
+	@Test
+	public void cadastro() {
+		WebDriver driver = new ChromeDriver();
+		//driver.manage().window().setSize(new Dimension(1024, 768));
+		driver.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+	}
+
+}

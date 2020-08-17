@@ -1,0 +1,130 @@
+package projetoteste;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Ignore;
+//import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+
+public class TesteCampoTreinamento {
+
+	@Test
+	public void testeTextField() {
+		WebDriver driver2 = new ChromeDriver();
+		driver2.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver2.findElement(By.id("elementosForm:nome")).sendKeys("Teste Texto");
+		Assert.assertEquals("Teste Texto", driver2.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+
+		driver2.quit();
+	}
+	
+	@Test
+	public void deveInteragirComTextArea() {
+		WebDriver driver3 = new ChromeDriver();
+		driver3.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver3.findElement(By.id("elementosForm:sugestoes")).sendKeys("teste");
+		Assert.assertEquals("teste", driver3.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
+		
+		driver3.quit();
+		
+	}
+	
+	@Test
+	public void deveInteragirComRadioButton() {
+		WebDriver driver4 = new ChromeDriver();
+		driver4.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver4.findElement(By.id("elementosForm:sexo:0")).click();
+		Assert.assertTrue(driver4.findElement(By.id("elementosForm:sexo:0")).isSelected());
+		//driver4.quit();
+	}
+	
+	@Test
+	public void deveInteragirComcheckBox() {
+		WebDriver driver5 = new ChromeDriver();
+		driver5.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver5.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+		Assert.assertTrue(driver5.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
+		//driver4.quit();
+	}
+	
+	@Test
+	public void DeveInteragirComCombo() {
+		WebDriver driver6 = new ChromeDriver();
+		driver6.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		WebElement element = driver6.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(element);
+		//combo.selectByIndex(2);
+		//combo.deselectByValue("Superior");
+		combo.selectByVisibleText("Mestrado");
+		Assert.assertEquals("Mestrado", combo.getFirstSelectedOption().getText());
+	}
+	
+	@Test
+	public void DeveVerificarValoresCombo() {
+		WebDriver driver6 = new ChromeDriver();
+		driver6.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		WebElement element = driver6.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(element);
+		java.util.List<WebElement> options = combo.getOptions();
+		Assert.assertEquals(8, options.size());
+		
+		boolean encontrou = false;
+		for(WebElement option: options) {
+			if(option.getText().equals("Mestrado")) {
+				encontrou = true;
+				break;
+			}
+		}
+		Assert.assertTrue(encontrou);
+	}
+	
+	@Test
+	public void DeveVerificarValoresComboMultiplo() {
+		WebDriver driver6 = new ChromeDriver();
+		driver6.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		WebElement element = driver6.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(element);
+		combo.selectByVisibleText("Natacao");
+		combo.selectByVisibleText("Futebol");
+		combo.selectByVisibleText("Karate");
+		
+		List<WebElement>allSelectdOptions = combo.getAllSelectedOptions();
+		Assert.assertEquals(3, allSelectdOptions.size());
+	}
+	
+	@Test
+	public void DeveInteragirComBotoes() {
+		WebDriver driver7 = new ChromeDriver();
+		driver7.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver7.findElement(By.id("buttonSimple")).click();
+	}
+	
+	@Test
+	@Ignore //Iguinora a execução do teste
+	public void DeveInteragirComLinks() {
+		WebDriver driver8 = new ChromeDriver();
+		//driver8.manage().window().setSize(new Dimension(1024, 768));
+		driver8.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver8.findElement(By.linkText("Voltar")).click();
+	}
+	
+	@Test
+	public void DeveVerificarOTituloDaPagina() {
+		WebDriver driver9 = new ChromeDriver();
+		//driver9.manage().window().setSize(new Dimension(1024, 768));
+		driver9.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		
+		System.out.println(driver9.findElement(By.tagName("body")).getText());
+	}
+}
+
+

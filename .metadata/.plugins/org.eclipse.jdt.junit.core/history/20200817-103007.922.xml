@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestDesafioRegraDeNegocios.deveValidarSexoObrigatorio" project="projetoteste" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="deveValidarSexoObrigatorio" classname="projetoteste.TestDesafioRegraDeNegocios" time="11.713"/>
+</testrun>

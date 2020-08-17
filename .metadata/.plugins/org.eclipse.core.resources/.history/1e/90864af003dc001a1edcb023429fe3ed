@@ -1,0 +1,17 @@
+package projetoteste;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TesteFrame {
+
+	@Test
+	public void cadastro() {
+		WebDriver driver = new ChromeDriver();
+		driver.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		
+		driver.findElement(By.id("frameButton")).click();
+	}
+}

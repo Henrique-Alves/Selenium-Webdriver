@@ -1,0 +1,53 @@
+package projetoteste;
+
+import org.junit.Assert;
+//import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class TesteCampoTreinamento {
+
+	@Test
+	public void testeTextField() {
+		WebDriver driver2 = new ChromeDriver();
+		driver2.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver2.findElement(By.id("elementosForm:nome")).sendKeys("Teste Texto");
+		Assert.assertEquals("Teste Texto", driver2.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+
+		driver2.quit();
+	}
+	
+	@Test
+	public void deveInteragirComTextArea() {
+		WebDriver driver3 = new ChromeDriver();
+		driver3.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver3.findElement(By.id("elementosForm:sugestoes")).sendKeys("teste");
+		Assert.assertEquals("teste", driver3.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
+		
+		driver3.quit();
+		
+	}
+	
+	@Test
+	public void deveInteragirComRadioButton() {
+		WebDriver driver4 = new ChromeDriver();
+		driver4.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver4.findElement(By.id("elementosForm:sexo:0")).click();
+		Assert.assertTrue(driver4.findElement(By.id("elementosForm:sexo:0")).isSelected());
+		//driver4.quit();
+	}
+	
+	@Test
+	public void deveInteragirComcheckBox() {
+		WebDriver driver5 = new ChromeDriver();
+		driver5.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		driver5.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+		Assert.assertTrue(driver5.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
+		//driver4.quit();
+	}
+}
+
+
