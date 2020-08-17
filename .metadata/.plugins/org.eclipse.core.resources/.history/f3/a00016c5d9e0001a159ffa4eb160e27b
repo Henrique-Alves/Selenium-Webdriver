@@ -32,36 +32,42 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void testeTextField() {
+		inicializa();
 		dsl.escreve("elementosForm:nome", "Teste Texto");
 		Assert.assertEquals("Teste Texto", dsl.obterValorCampo("elementosForm:nome"));
 	}
 	
 	@Test
 	public void deveInteragirComTextArea() {
+		inicializa();
 		dsl.escreve("elementosForm:sugestoes", "teste");
 		Assert.assertEquals("teste", dsl.obterValorCampo("elementosForm:sugestoes"));	
 	}
 	
 	@Test
 	public void deveInteragirComRadioButton() {
+		inicializa();
 		dsl.clickRadioButton("elementosForm:sexo:0");
 		Assert.assertTrue(dsl.checandoSeORadioEstaMarcado("elementosForm:sexo:0"));
 	}
 	
 	@Test
 	public void deveInteragirComcheckBox() {
+		inicializa();
 		dsl.clickRadioButton("elementosForm:comidaFavorita:0");
 		Assert.assertTrue(dsl.checandoSeORadioEstaMarcado("elementosForm:comidaFavorita:0"));
 	}
 	
 	@Test
 	public void DeveInteragirComCombo() {
+        inicializa();
 		dsl.selecionarCombo("elementosForm:escolaridade", "Mestrado");
 		Assert.assertEquals("Mestrado", dsl.deveRetornarUmValorCombo("elementosForm:escolaridade"));
 	}
 	
 	@Test
 	public void DeveVerificarValoresCombo() {
+		inicializa();
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(element);
 		java.util.List<WebElement> options = combo.getOptions();
@@ -79,6 +85,7 @@ public class TesteCampoTreinamento {
 	
 	@Test
 	public void DeveVerificarValoresComboMultiplo() {
+		inicializa();
 		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
 		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
 		dsl.selecionarCombo("elementosForm:esportes", "Karate");
@@ -91,6 +98,7 @@ public class TesteCampoTreinamento {
 	
 	@Test
 	public void DeveInteragirComBotoes() {
+		inicializa();
 		dsl.ClicarBotao("buttonSimple");
 		
 		WebElement botao = driver.findElement(By.id("buttonSimple"));
@@ -100,12 +108,14 @@ public class TesteCampoTreinamento {
 	@Test
 	@Ignore //Iguinora a execução do teste
 	public void DeveInteragirComLinks() {
+		inicializa();
 		dsl.clicarEmLink("voltar");
 		Assert.assertEquals("Voltou!", dsl.obterTexto("resultado"));
 	}
 	
 	@Test
 	public void DeveVerificarOTituloDaPagina() {
+		inicializa();
 		
 		//Assert.assertTrue(driver9.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
 		Assert.assertEquals("Campo de Treinamento", dsl.obterNomeDoTexto(By.tagName("h3")));
