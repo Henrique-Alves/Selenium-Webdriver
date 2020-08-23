@@ -15,6 +15,7 @@ public class DSL {
 	}
 
 	public void escreve(String id_campo, String texto) {
+		driver.findElement(By.id(id_campo)).clear();;
 		driver.findElement(By.id(id_campo)).sendKeys(texto);
 	}
 	

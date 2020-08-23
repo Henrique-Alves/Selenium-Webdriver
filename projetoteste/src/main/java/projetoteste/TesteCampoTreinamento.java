@@ -2,6 +2,7 @@ package projetoteste;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -28,6 +29,11 @@ public class TesteCampoTreinamento {
 		driver.get("file:///"+System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		
 		dsl = new DSL(driver);
+	}
+	
+	@After
+	public void finalizar() {
+		driver.quit();
 	}
 
 	@Test
@@ -94,7 +100,7 @@ public class TesteCampoTreinamento {
 		dsl.ClicarBotao("buttonSimple");
 		
 		WebElement botao = driver.findElement(By.id("buttonSimple"));
-		Assert.assertEquals("Obrigado", botao.getAttribute("value"));
+		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 	}
 	
 	@Test
