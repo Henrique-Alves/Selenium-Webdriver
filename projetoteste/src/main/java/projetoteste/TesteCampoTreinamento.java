@@ -9,6 +9,7 @@ import org.junit.Ignore;
 //import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 //simport org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +34,7 @@ public class TesteCampoTreinamento {
 	
 	@After
 	public void finalizar() {
-		driver.quit();
+		//driver.quit();
 	}
 
 	@Test
@@ -118,6 +119,18 @@ public class TesteCampoTreinamento {
 		driver.findElement(By.tagName("h3")).getText();
 		
 		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", dsl.obterNomeDoTexto(By.className("facilAchar")));
+	}
+	
+	//***************JS*******************
+	
+	@Test
+	public void testJavascript() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		//js.executeScript("alert('Testando js via selenium')");
+		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escreva Meu nome é Henrique Alves'");
+		
+		WebElement element = driver.findElement(By.id("elementosForm:nome"));
+		js.executeScript("arguments[0].style.border = arguments[1]", element, "solid 4px red");
 	}
 }
 

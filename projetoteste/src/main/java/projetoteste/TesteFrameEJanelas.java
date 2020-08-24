@@ -5,10 +5,15 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class TesteFrameEJanelas {
+	
+	public WebDriver driver;
+	public DSL dsl;
+	public CampoTreinamentoPage page;
 
 	@Test
 	public void deveInteragirComFrames() {
@@ -52,6 +57,6 @@ public class TesteFrameEJanelas {
 		driver02.switchTo().window((String) driver02.getWindowHandles().toArray()[0]);
 		driver02.findElement(By.tagName("textarea")).sendKeys("e agora?");
 		
-		
 	}
+	
 }
